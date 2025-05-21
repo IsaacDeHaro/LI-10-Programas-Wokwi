@@ -209,38 +209,166 @@ while True:
 ### Resultado
 
 
-## 7.- Contador con botón:
+## 7.- Contador de personas con sensores ultrasónicos y display 7 segmentos:
 
 ### Codigo
 ```
+from machine import Pin
+from time import sleep
+import tm1637
 
+tm = tm1637.TM1637(clk=Pin(2), dio=Pin(3))
+
+boton_entrada = Pin(10, Pin.IN, Pin.PULL_UP)
+boton_salida = Pin(11, Pin.IN, Pin.PULL_UP)
+
+contador = 0
+tm.number(contador)
+
+while True:
+    if boton_entrada.value() == 0:
+        if contador < 9999:
+            contador += 1
+            tm.number(contador)
+            print("Entrada detectada. Conteo:", contador)
+            sleep(0.5)
+        while boton_entrada.value() == 0:
+            pass
+
+    if boton_salida.value() == 0:
+        if contador > 0:
+            contador -= 1
+            tm.number(contador)
+            print("Salida detectada. Conteo:", contador)
+            sleep(0.5)
+        while boton_salida.value() == 0:
+            pass
+
+    sleep(0.1)
 ```
 ### Resultado
 
 
-## 8.- Riego automático simple:
+## 8.- Detector de gas con alarma LED y buzzer:
 
 ### Codigo
 ```
+from machine import Pin
+from time import sleep
 
+# Sensor de gas conectado a GP14 (salida digital D0)
+gas_sensor = Pin(14, Pin.IN)
+
+# LED y buzzer como alerta
+led = Pin(15, Pin.OUT)
+buzzer = Pin(16, Pin.OUT)
+
+while True:
+    if gas_sensor.value() == 0:
+        print("¡Gas detectado!")
+        led.value(1)
+        buzzer.value(1)
+    else:
+        print("Sin gas.")
+        led.value(0)
+        buzzer.value(0)
+    sleep(1)
 ```
 ### Resultado
 
 
-## 9.- Control de acceso con botón:
+## 9.- Control de acceso con contraseña usando teclado matricial y LCD:
 
 ### Codigo
 ```
+from machine import Pin, I2C
+from time import sleep
+from lcd_api import LcdApi
+from i2c_lcd import I2cLcd
+from keypad import Keypad
 
+# Setup I2C para LCD
+i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=400000)
+lcd = I2cLcd(i2c, 0x27, 2, 16)
+
+# Setup del teclado
+rows = [Pin(i, Pin.IN, Pin.PULL_DOWN) for i in range(2, 6)]
+cols = [Pin(i, Pin.OUT) for i in range(6, 10)]
+
+keys = [
+    ["1", "2", "3", "A"],
+    ["4", "5", "6", "B"],
+    ["7", "8", "9", "C"],
+    ["*", "0", "#", "D"]
+]
+
+keypad = Keypad(keys, rows, cols)
+
+# Contraseña almacenada
+PASSWORD = "1234"
+input_code = ""
+
+lcd.clear()
+lcd.putstr("Enter password:")
+
+while True:
+    key = keypad.get_key()
+    if key:
+        if key == "#":  # Confirmar
+            if input_code == PASSWORD:
+                lcd.clear()
+                lcd.putstr("Access granted")
+                print("Access granted")
+            else:
+                lcd.clear()
+                lcd.putstr("Access denied")
+                print("Access denied")
+            sleep(2)
+            lcd.clear()
+            lcd.putstr("Enter password:")
+            input_code = ""
+        elif key == "*":  # Borrar
+            input_code = ""
+            lcd.clear()
+            lcd.putstr("Enter password:")
+        else:
+            input_code += key
+            lcd.move_to(0, 1)
+            lcd.putstr("*" * len(input_code))
+    sleep(0.1)
 ```
 ### Resultado
 
 
-## 10.- Mini estación meteorológica:
+## 10.- Alarma con sensor PIR y buzzer:
 
 ### Codigo
 ```
+from machine import Pin
+from time import sleep, ticks_ms
 
+pir = Pin(15, Pin.IN)
+buzzer = Pin(14, Pin.OUT)
+led = Pin(13, Pin.OUT)
+
+motion_detected = False
+last_detection_time = 0
+cooldown = 5000  # 5 segundos en ms
+
+while True:
+    current_time = ticks_ms()
+    if pir.value() == 1 and not motion_detected:
+        motion_detected = True
+        last_detection_time = current_time
+        buzzer.value(1)
+        led.value(1)
+        print("¡Movimiento detectado!")
+    elif motion_detected and (current_time - last_detection_time) > cooldown:
+        motion_detected = False
+        buzzer.value(0)
+        led.value(0)
+        print("Movimiento terminado, esperando nueva detección...")
+    sleep(0.1)
 ```
 ### Resultado
 
