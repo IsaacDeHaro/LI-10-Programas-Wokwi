@@ -42,11 +42,7 @@ while True:
         time.sleep(2)
 ```
 ### Resultado
-
-
-https://github.com/user-attachments/assets/7bcf9a21-6eee-4ea5-aac2-cb0570c50468
-
-
+https://github.com/user-attachments/assets/9f7cef91-4349-46d2-939f-45fd97487535
 
 ## 2.- Semáforo básico:
 
@@ -78,10 +74,7 @@ while True:
     sleep(5)
 ```
 ### Resultado
-
-
-https://github.com/user-attachments/assets/cb771167-1324-4a24-ab95-0a486e0d8b8d
-
+https://github.com/user-attachments/assets/3186f89b-9213-40fd-82ca-e23c0d0bc714
 
 ## 3.- Alarma simple con botón:
 
@@ -104,11 +97,7 @@ while True:
     sleep(0.2)
 ```
 ### Resultado
-
-
-https://github.com/user-attachments/assets/19ed0bae-642d-43a1-a97a-88dea89377a1
-
-
+https://github.com/user-attachments/assets/27fd9f6f-52ca-486b-91fd-b1ad73e04f8a
 
 ## 4.- Monitor de luz ambiental con LED:
 
@@ -135,11 +124,7 @@ while True:
     sleep(0.2)
 ```
 ### Resultado
-
-
-https://github.com/user-attachments/assets/4d721f0d-31cf-45ce-98cf-271747a6d303
-
-
+https://github.com/user-attachments/assets/c3b9c398-59ec-4de2-b6a5-f957b622a0b2
 
 ## 5.- Control automático de ventilador con potenciómetro:
 
@@ -163,11 +148,7 @@ while True:
     sleep(0.2)
 ```
 ### Resultado
-
-
-https://github.com/user-attachments/assets/244dc366-771e-4354-9a3d-37b1bfe74e1a
-
-
+https://github.com/user-attachments/assets/6671ad39-5ab3-4450-b6dd-a20ba922fbda
 
 ## 6.- Juego simple de "Simón dice" con LEDs y botones:
 
@@ -227,11 +208,7 @@ while True:
         break
 ```
 ### Resultado
-
-
 https://github.com/user-attachments/assets/556fc584-0116-4f70-bcba-0d315b59feb8
-
-
 
 ## 7.- Contador de personas con sensores ultrasónicos y display 7 segmentos:
 
@@ -271,11 +248,7 @@ while True:
     sleep(0.1)
 ```
 ### Resultado
-
-
-https://github.com/user-attachments/assets/8a61c723-eeb0-40ed-9051-82e43b0b0043
-
-
+https://github.com/user-attachments/assets/1ca3868a-151c-4020-a546-7f76e6b00fa9
 
 ## 8.- Detector de gas con alarma LED y buzzer:
 
@@ -303,11 +276,7 @@ while True:
     sleep(1)
 ```
 ### Resultado
-
-
 https://github.com/user-attachments/assets/64583862-8284-4629-8cf8-421f2742c961
-
-
 
 ## 9.- Control de acceso con contraseña usando teclado matricial y LCD:
 
@@ -370,11 +339,7 @@ while True:
     sleep(0.1)
 ```
 ### Resultado
-
-
 https://github.com/user-attachments/assets/a1cd1ebe-9c89-4b97-bd42-645bfb2fd674
-
-
 
 ## 10.- Alarma con sensor PIR y buzzer:
 
@@ -407,8 +372,4 @@ while True:
     sleep(0.1)
 ```
 ### Resultado
-
-
 https://github.com/user-attachments/assets/e4f12fea-d1af-4e62-942a-192a30ccf115
-
-
